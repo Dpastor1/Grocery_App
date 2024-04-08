@@ -1,0 +1,3 @@
+This file will track the receipt files created by listing their filename.
+
+ReceiptName.txt

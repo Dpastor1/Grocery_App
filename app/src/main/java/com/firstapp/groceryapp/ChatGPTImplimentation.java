@@ -6,7 +6,7 @@ import java.net.URL;
 import java.security.Signature;
 
 public class ChatGPTImplimentation {
-    final public static String instructions = "Using the gorcery receipt given, place each item from the receipt in one of the following categories: Beverages, Bread/Bakery, Canned/Jarred Goods, Dairy, Dry/Baking Goods, Frozen Foods, Meat, Produce, Personal Care, and Other. Format each item in the form of: Category, item, price. If the price is unknown, put price as UNKNOWN. : ";
+    final public static String instructions = "Using the grocery receipt given, place each item from the receipt in one of the following categories: Beverages, Bread/Bakery, Canned/Jarred Goods, Dairy, Dry/Baking Goods, Frozen Foods, Meat, Produce, Personal Care, and Other. Format each item in the form of: Category, item, price. If the price is unknown, put price as UNKNOWN. : ";
     public static String chatGPT(String prompt) {
         String url = "https://api.openai.com/v1/chat/completions";
         String apiKey = "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";

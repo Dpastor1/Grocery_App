@@ -5,10 +5,17 @@ import java.util.ArrayList;
 public class GroceryReceipt {
     private ArrayList<GroceryItem> items;
     private int size;
+    private String name;
 
     public GroceryReceipt(){
         this.items = new ArrayList<GroceryItem>();
         this.size = 0;
+        this.name = "UnnamedGroceryReceipt";
+    }
+    public GroceryReceipt(String name){
+        this.items = new ArrayList<GroceryItem>();
+        this.size = 0;
+        this.name = "name";
     }
 
     public void addItem(GroceryItem item){
@@ -26,9 +33,20 @@ public class GroceryReceipt {
         return null;
     }
 
+
+    // --------------------Getters-----------------------------------
     public int size(){
         return items.size();
     }
+
+    public String getName(){
+        return name;
+    }
+
+
+
 }
+
+
 
 
