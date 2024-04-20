@@ -34,5 +34,8 @@ public class GroceryItem {
     }
 
 
-
+    @Override
+    public String toString(){
+        return itemName + " " + cost + " " + category;
+    }
 }

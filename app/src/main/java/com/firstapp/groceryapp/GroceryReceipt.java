@@ -44,7 +44,14 @@ public class GroceryReceipt {
     }
 
 
-
+    @Override
+    public String toString(){
+        String stringOutput = "";
+        for (GroceryItem item : items){
+            stringOutput = stringOutput + item.toString() + "\n";
+        }
+        return stringOutput;
+    }
 }
 
 

@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity{
     private static final int REQUEST_CAMERA_CODE = 100;
     private TextView textView;
     private String stringURLEndPoint = "https://api.openai.com/v1/chat/completions";
-    private String stringAPIKey = "API_KEY_HERE";
+    private String stringAPIKey = "APi Key";
     private String stringOutput = "";
 
     @Override
@@ -123,8 +123,15 @@ public class MainActivity extends AppCompatActivity{
                         //textView.setText(stringOutput);
 
                         // Store the API response as a string
-                        String apiResponseAsString = stringOutput; // Assuming you want to store the entire response as a string
+                        String apiResponseAsString = stringOutput;
                         Log.d("API Response", apiResponseAsString);
+                        GroceryReceipt groceryReceipt = new GroceryReceipt();
+                        String[] lines = apiResponseAsString.split("\n");
+                        for (String line : lines) {
+                            String [] items = line.split(",");
+                            groceryReceipt.addItem(new GroceryItem(items[1], items[2], items[0]));
+                        }
+                        Log.d("GroceryList:", groceryReceipt.toString());
                     }
 
                 }, new Response.ErrorListener() {
@@ -151,8 +158,7 @@ public class MainActivity extends AppCompatActivity{
                 jsonObjectRequest.setRetryPolicy(retryPolicy);
                 Volley.newRequestQueue(getApplicationContext()).add(jsonObjectRequest);
 
-                //message = message.replace("\n", " ");
-                //System.out.println(message);
+
             }
         });
     }
