@@ -12,8 +12,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
@@ -27,15 +30,38 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
-public class MainActivity extends AppCompatActivity {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class MainActivity extends AppCompatActivity{
     Button button_capture;
     Button button_copy;
     TextView textview_data;
 
     Bitmap bitmap;
 
+
     private static final int REQUEST_CAMERA_CODE = 100;
+    private TextView textView;
+    private String stringURLEndPoint = "https://api.openai.com/v1/chat/completions";
+    private String stringAPIKey = "API_KEY_HERE";
+    private String stringOutput = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +89,70 @@ public class MainActivity extends AppCompatActivity {
         button_copy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                StrictMode.ThreadPolicy gfgPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(gfgPolicy);
+
                 String scanned_text = textview_data.getText().toString();
-                copyToClipBoard(scanned_text);
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("model", "gpt-3.5-turbo");
+                    JSONArray jsonArrayMessage = new JSONArray();
+                    JSONObject jsonObjectMessage = new JSONObject();
+                    jsonObjectMessage.put("role", "user");
+                    jsonObjectMessage.put("content", "Using the grocery receipt given, place each item from the receipt in one of the following categories: Beverages, Bread/Bakery, Canned/Jarred Goods, Dairy, Dry/Baking Goods, Frozen Foods, Meat, Produce, Personal Care, and Other. Format each item in the form of: Category, item, price. If the price is unknown, put price as UNKNOWN. :" + scanned_text + " Do not include anything else in your response besides the items");
+                    jsonArrayMessage.put(jsonObjectMessage);
+                    jsonObject.put("messages", jsonArrayMessage);
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
+                        stringURLEndPoint, jsonObject, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        String stringText = null;
+                        try {
+                            stringText = response.getJSONArray("choices")
+                                    .getJSONObject(0)
+                                    .getJSONObject("message")
+                                    .getString("content");
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                        stringOutput = stringOutput + stringText;
+                        //textView.setText(stringOutput);
+
+                        // Store the API response as a string
+                        String apiResponseAsString = stringOutput; // Assuming you want to store the entire response as a string
+                        Log.d("API Response", apiResponseAsString);
+                    }
+
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }){
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> mapHeader = new HashMap<>();
+                        mapHeader.put("Authorization", "Bearer " + stringAPIKey);
+                        mapHeader.put("Content-Type", "application/json");
+                        return mapHeader;
+                    }
+                    @Override
+                    protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+                        return super.parseNetworkResponse(response);
+                    }
+                };
+                int intTimeoutPeriod = 60000; // 60 seconds timeout duration defined
+                RetryPolicy retryPolicy = new DefaultRetryPolicy(intTimeoutPeriod,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                jsonObjectRequest.setRetryPolicy(retryPolicy);
+                Volley.newRequestQueue(getApplicationContext()).add(jsonObjectRequest);
+
+                //message = message.replace("\n", " ");
+                //System.out.println(message);
             }
         });
     }
@@ -104,12 +192,6 @@ public class MainActivity extends AppCompatActivity {
             button_copy.setVisibility(View.VISIBLE);
         }
     }
-
-    private void copyToClipBoard(String text){
-        ClipboardManager clipBoard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("Copied data", text);
-        clipBoard.setPrimaryClip(clip);
-        Toast.makeText(MainActivity.this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
-    }
-
 }
+
+
