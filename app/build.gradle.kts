@@ -42,5 +42,4 @@ dependencies {
 
     implementation ("com.google.android.gms:play-services-vision:19.0.0")
     implementation ("com.theartofdev.edmodo:android-image-cropper:2.8.+")
-    implementation ("ai.openai:gpt-3.5-android:1.6.0")
 }
