@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Select receipt that you would like to upload"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="22sp" />
     </ScrollView>
     <LinearLayout

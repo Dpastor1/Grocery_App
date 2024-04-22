@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Grocery App</string>
+
+    <!-- This is your string-array for grocery categories -->
+    <string-array name="grocery_categories">
+        <item>Beverages</item>
+        <item>Bread/Bakery</item>
+        <item>Canned/Jarred Goods</item>
+        <item>Dairy</item>
+        <item>Dry/Baking Goods</item>
+        <item>Frozen Foods</item>
+        <item>Meat</item>
+        <item>Produce</item>
+        <item>Personal Care</item>
+        <item>Other</item>
+    </string-array>
+
+    <!-- Add category_prompt -->
+    <string name="category_prompt">Please choose a category</string>
 </resources>
