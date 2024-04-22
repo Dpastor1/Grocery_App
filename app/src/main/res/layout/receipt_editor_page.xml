@@ -1,32 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Receipt Name" />
+    android:padding="16dp">
 
     <EditText
-        android:id="@+id/editReceiptName"
+        android:id="@+id/edit_grocery_item_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Receipt Name" />
+        android:hint="Item Name" />
 
-    <LinearLayout
-        android:id="@+id/itemContainer"
+    <EditText
+        android:id="@+id/edit_grocery_item_price"
+        android:layout_below="@id/edit_grocery_item_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <!-- Dynamically populate and allow editing for each grocery item -->
-    </LinearLayout>
+        android:inputType="numberDecimal"
+        android:hint="Item Price" />
+
+    <EditText
+        android:id="@+id/edit_grocery_item_category"
+        android:layout_below="@id/edit_grocery_item_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Category" />
 
     <Button
-        android:id="@+id/addItemButton"
+        android:id="@+id/button_save"
+        android:layout_below="@id/edit_grocery_item_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Item" />
-
-</LinearLayout>
+        android:text="Save" />
+</RelativeLayout>

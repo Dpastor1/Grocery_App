@@ -1,41 +1,46 @@
 package com.firstapp.groceryapp;
 
-public class GroceryItem {
-    private String cost;
-    private String itemName;
+import java.io.Serializable;
+
+public class GroceryItem implements Serializable {
+    private String name;
+    private String price;
     private String category;
 
-    public GroceryItem(String itemName, String cost, String category){
-        this.itemName = itemName;
-        this.cost = cost;
+    public GroceryItem(String name, String price, String category) {
+        this.name = name;
+        this.price = price;
         this.category = category;
     }
 
-    //-----------Getters and Setters -------------------
-
-    public void setItemName(String itemName){
-        this.itemName = itemName;
-    }
-    public void setCost(String cost){
-        this.cost = cost;
-    }
-    public void setCategory(String category){
-        this.category = category;
-    }
-    public String getCost(){
-        return cost;
-    }
-    public String getItemName(){
-        return itemName;
+    // Getters
+    public String getName() {
+        return name;
     }
 
-    public String getCategory(){
+    public String getPrice() {
+        return price;
+    }
+
+    public String getCategory() {
         return category;
     }
 
+    // Setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     @Override
-    public String toString(){
-        return itemName + " " + cost + " " + category;
+    public String toString() {
+        return "Name: " + name + ", Price: " + price + ", Category: " + category;
     }
 }
