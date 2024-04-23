@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <!-- Name of the grocery item -->
+    <TextView
+        android:id="@+id/text_grocery_item_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:text="Item Name" />
+
+    <!-- Price of the grocery item -->
+    <TextView
+        android:id="@+id/text_grocery_item_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:text="Item Price" />
+
+    <!-- Category of the grocery item -->
+    <TextView
+        android:id="@+id/text_grocery_item_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:text="Item Category" />
+
+</LinearLayout>
