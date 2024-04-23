@@ -39,4 +39,17 @@ public class GroceryReceipt implements Serializable {
         }
         return stringOutput.toString();
     }
+    public GroceryItem get(int index){
+        return items.get(index);
+    }
+
+    public int size(){
+        return size;
+    }
+
+    public void set(int index, GroceryItem item){
+        items.set(index, item);
+    }
+
+
 }
