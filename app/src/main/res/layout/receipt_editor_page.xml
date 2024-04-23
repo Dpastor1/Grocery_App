@@ -1,33 +1,66 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <!-- Label for Item Name -->
+    <TextView
+        android:id="@+id/label_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item Name"
+        android:textSize="16sp" />
+
+    <!-- EditText for Item Name -->
     <EditText
         android:id="@+id/edit_grocery_item_name"
+        android:layout_below="@id/label_item_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Item Name" />
 
+    <!-- Label for Price -->
+    <TextView
+        android:id="@+id/label_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_grocery_item_name"
+        android:text="Price"
+        android:textSize="16sp" />
+
+    <!-- EditText for Price -->
     <EditText
         android:id="@+id/edit_grocery_item_price"
-        android:layout_below="@id/edit_grocery_item_name"
+        android:layout_below="@id/label_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        android:hint="Item Price" />
+        android:hint="Price" />
 
-    <EditText
-        android:id="@+id/edit_grocery_item_category"
-        android:layout_below="@id/edit_grocery_item_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Category" />
-
-    <Button
-        android:id="@+id/button_save"
-        android:layout_below="@id/edit_grocery_item_category"
+    <!-- Label for Category -->
+    <TextView
+        android:id="@+id/label_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save" />
+        android:layout_below="@id/edit_grocery_item_price"
+        android:text="Category"
+        android:textSize="16sp" />
+
+    <!-- Dropdown for Category -->
+    <Spinner
+        android:id="@+id/edit_grocery_item_category"
+        android:layout_below="@id/label_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Save Receipt Button -->
+    <Button
+        android:id="@+id/button_save_receipt"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Receipt"
+        android:layout_marginBottom="16dp" />
 </RelativeLayout>
