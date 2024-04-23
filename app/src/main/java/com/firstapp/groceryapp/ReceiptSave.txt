@@ -1,4 +1,0 @@
-Grocery Receipt Name
-Item : //Item Name
-Price : //price
-Category: // category
