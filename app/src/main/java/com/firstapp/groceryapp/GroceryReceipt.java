@@ -52,4 +52,11 @@ public class GroceryReceipt implements Serializable {
     }
 
 
+    public void setItems(ArrayList<GroceryItem> items) {
+        this.items = items;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 }

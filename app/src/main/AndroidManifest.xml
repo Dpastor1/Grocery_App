@@ -35,11 +35,15 @@
             android:name=".MainActivity"
             android:exported="true"/>
 
+        <!-- ReceiptViewerActivity for viewing saved receipts -->
+        <activity
+            android:name=".ReceiptViewerActivity"
+            android:exported="true"/>
+
         <!-- Activity to view the grocery receipt -->
         <activity
             android:name=".ReceiptActivity"
             android:exported="true" />
-
 
         <!-- Activity to edit individual grocery items -->
         <activity

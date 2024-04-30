@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity{
     private static final int REQUEST_CAMERA_CODE = 100;
     private TextView textView;
     private String stringURLEndPoint = "https://api.openai.com/v1/chat/completions";
-    private String stringAPIKey = "API KEY";
+    private String stringAPIKey = "sk-proj-bLL9qvisYExZEfpWYuxJT3BlbkFJ43SNBSEyxnSmqIH6DJAo";
     private String stringOutput = "";
 
     @Override

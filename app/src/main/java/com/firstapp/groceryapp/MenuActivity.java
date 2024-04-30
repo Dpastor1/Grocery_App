@@ -27,10 +27,10 @@ public class MenuActivity extends AppCompatActivity {
         btnViewReceipts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Assume you have another activity to view receipts
-                Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+                Intent intent = new Intent(MenuActivity.this, ReceiptViewerActivity.class);
                 startActivity(intent);
             }
         });
+
     }
 }
