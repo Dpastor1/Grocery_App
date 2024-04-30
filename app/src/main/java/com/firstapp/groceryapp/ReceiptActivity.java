@@ -81,5 +81,11 @@ public class ReceiptActivity extends AppCompatActivity {
 
         // Display a message indicating successful save
         Toast.makeText(this, "Receipt saved successfully", Toast.LENGTH_SHORT).show();
+
+        // Navigate back to the menu screen
+        Intent intent = new Intent(this, MenuActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Clear the back stack
+        startActivity(intent);
+        finish(); // Finish this activity
     }
 }
