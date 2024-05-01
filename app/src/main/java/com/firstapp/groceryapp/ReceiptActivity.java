@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+
 public class ReceiptActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "grocery_prefs";
@@ -69,17 +71,22 @@ public class ReceiptActivity extends AppCompatActivity {
         }
     }
     private void saveReceipt() {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
+        // Save the receipt to SharedPreferences
+        ReceiptManager.saveReceipt(this, groceryItems);
+        // Retrieve existing saved receipts
+        //ArrayList<GroceryReceipt> savedReceipts = ReceiptManager.getSavedReceipts(this);
 
-        // Serialize the grocery receipt into JSON
-        Gson gson = new Gson();
-        String jsonReceipt = gson.toJson(groceryItems);
-        Log.d("Receipt Save", jsonReceipt);
-        editor.putString(RECEIPT_KEY, jsonReceipt);
-        editor.apply();
+        // Add the new receipt to the list
 
-        // Display a message indicating successful save
+        //Log.d("Receipt Save", jsonReceipts);
+
         Toast.makeText(this, "Receipt saved successfully", Toast.LENGTH_SHORT).show();
+
+        // Navigate back to the menu screen
+        Intent intent = new Intent(this, MenuActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Clear the back stack
+        startActivity(intent);
+        //Log.d("Receipt Save", );
+        finish(); // Finish this activity
     }
 }

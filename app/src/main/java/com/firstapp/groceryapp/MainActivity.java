@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity{
     private static final int REQUEST_CAMERA_CODE = 100;
     private TextView textView;
     private String stringURLEndPoint = "https://api.openai.com/v1/chat/completions";
-    private String stringAPIKey = "sk-proj-ZURO3RQG93ppccswHnd5T3BlbkFJ2IwRUbVBwUnYXs1GFMbf";
+    private String stringAPIKey = "API KEY";
     private String stringOutput = "";
 
     @Override
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity{
                             groceryReceipt.addItem(new GroceryItem(items[1], items[2], items[0]));
                         }
                         Log.d("GroceryList:", groceryReceipt.toString());
-                        Intent intent = new Intent(MainActivity.this, ReceiptActivity.class);
+                        Intent intent = new Intent(MainActivity.this, ReceiptNameActivity.class);
                         intent.putExtra("grocery_receipt", groceryReceipt);
                         startActivity(intent);
                     }

@@ -10,6 +10,7 @@ public class GroceryReceipt implements Serializable {
     private int size;
     private String name;
 
+
     public GroceryReceipt() {
         this.items = new ArrayList<GroceryItem>();
         this.size = 0;
@@ -43,6 +44,10 @@ public class GroceryReceipt implements Serializable {
         return items.get(index);
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int size(){
         return size;
     }
@@ -52,4 +57,22 @@ public class GroceryReceipt implements Serializable {
     }
 
 
+    public void setItems(ArrayList<GroceryItem> items) {
+        this.items = items;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public double getTotalPrice() {
+        double totalPrice = 0.0;
+        for (GroceryItem item : items) {
+            totalPrice += Double.parseDouble(item.getPrice());
+        }
+        return totalPrice;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 }
