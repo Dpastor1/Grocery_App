@@ -20,8 +20,6 @@ public class ReceiptManager {
 
         // Retrieve existing saved receipts
         ArrayList<GroceryReceipt> savedReceipts = getSavedReceipts(context);
-
-        // Add the new receipt to the list
         savedReceipts.add(receipt);
 
         // Serialize the updated list and save it back to SharedPreferences

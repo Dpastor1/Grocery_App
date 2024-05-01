@@ -20,15 +20,17 @@ public class ReceiptViewerActivity extends AppCompatActivity {
 
         Log.d("ReceiptViewerActivity", "onCreate: Retrieving saved receipts...");
 
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recycler_view_grocery_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Retrieve saved receipts from SharedPreferences
+        // Retrieve saved receipts from SharedPreferences or your storage method
         ArrayList<GroceryReceipt> savedReceipts = ReceiptManager.getSavedReceipts(this);
         Log.d("ReceiptViewerActivity", "Retrieved " + savedReceipts.size() + " saved receipts.");
 
-        // Set up RecyclerView adapter
-        adapter = new ReceiptAdapter(savedReceipts);
+        // Set up RecyclerView adapter - Pass 'this' as the context
+        adapter = new ReceiptAdapter(this, savedReceipts);
         recyclerView.setAdapter(adapter);
+        Log.d("ReceiptViewerActivity", "Set up RecyclerView adapter." + savedReceipts.toString());
     }
+
 }
